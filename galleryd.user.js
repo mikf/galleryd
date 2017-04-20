@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name        galleryd
 // @namespace   util
-// @include     http://www.pixiv.net/*
-// @include     http://exhentai.org/*
-// @include     http://saucenao.com/search.php*
-// @include     http://gelbooru.com/*
+// @include     https://www.pixiv.net/*
+// @include     https://exhentai.org/*
+// @include     https://saucenao.com/search.php*
+// @include     https://gelbooru.com/*
 // @include     https://chan.sankakucomplex.com/*
-// @include     http://nijie.info/*
+// @include     https://nijie.info/*
 // @grant       GM_xmlhttpRequest
 // ==/UserScript==
 
@@ -555,76 +555,71 @@ function nijie_member_works()
 //
 function select_module()
 {
-    let url = window.location.href;
+    let host = window.location.hostname;
+    let path = window.location.pathname;
 
-    if(url.startsWith("http://www.pixiv.net"))
+    if(host == "www.pixiv.net")
     {
-        let start = "http://www.pixiv.net/".length;
-
-        if(url.startsWith("mypage.php", start))
+        if(path.startsWith("/mypage.php"))
             return new pixiv_home();
 
-        if(url.startsWith("member", start))
+        if(path.startsWith("/member"))
             return new pixiv_member();
 
-        if(url.startsWith("bookmark.php?id=", start))
+        if(path.startsWith("/bookmark.php?id="))
             return new pixiv_member_bookmarks();
 
-        if(url.startsWith("bookmark.php", start))
+        if(path.startsWith("/bookmark.php"))
             return new pixiv_bookmarks();
 
-        if(url.startsWith("bookmark_add.php", start))
+        if(path.startsWith("/bookmark_add.php"))
             return new pixiv_bookmark_add();
 
-        if(url.startsWith("search.php", start))
+        if(path.startsWith("/search.php"))
             return new pixiv_search();
 
-        if(url.startsWith("stacc/", start))
+        if(path.startsWith("/stacc/"))
             return new pixiv_stacc();
 
-        if(url.startsWith("spotlight/", start))
+        if(path.startsWith("/spotlight/"))
             return new pixiv_spotlight();
 
-        if(url.startsWith("ranking.php", start))
+        if(path.startsWith("/ranking.php"))
             return new pixiv_ranking();
     }
 
-    else if(url.startsWith("http://exhentai.org"))
+    else if(host == "exhentai.org")
     {
-        let start = "http://exhentai.org/".length;
-
-        if(url.startsWith("g/", start))
+        if(path.startsWith("/g/"))
             return new exhentai_gallery();
 
-        if(url.startsWith("s/", start))
+        if(path.startsWith("/s/"))
             return new exhentai_image();
 
         return new exhentai_search();
     }
 
-    else if(url.startsWith("http://saucenao.com"))
+    else if(host == "saucenao.com")
     {
         return new saucenao_search();
     }
 
-    else if(url.startsWith("http://gelbooru.com"))
+    else if(host == "gelbooru.com")
     {
         return new gelbooru_search();
     }
 
-    else if(url.startsWith("https://chan.sankakucomplex.com"))
+    else if(host == "chan.sankakucomplex.com")
     {
         return new sankaku_search();
     }
 
-    else if(url.startsWith("http://nijie.info"))
+    else if(host == "nijie.info")
     {
-        let start = "http://nijie.info/".length;
-
-        if(url.startsWith("members.php?id=", start))
+        if(path.startsWith("/members.php"))
             return new nijie_member();
 
-        if(url.startsWith("members_illust.php?id=", start))
+        if(path.startsWith("/members_illust.php"))
             return new nijie_member_works();
     }
 }

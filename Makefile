@@ -3,8 +3,8 @@ SRCDIR   := src
 BUILDDIR := obj
 # CFLAGS   := -g -std=c++11 -Wall -Wextra -pedantic -fdiagnostics-color=auto -Wno-unused-parameter
 # LDFLAGS  := -g
-CFLAGS   := -O3 -march=native -std=c++11 -Wall -Wextra -pedantic -fdiagnostics-color=auto -Wno-unused-parameter
-LDFLAGS  := -O3 -march=native
+CFLAGS   := -Os -march=native -std=c++11 -Wall -Wextra -pedantic -fdiagnostics-color=auto -Wno-unused-parameter
+LDFLAGS  := -Os -march=native
 TARGET   := galleryd
 
 SRCEXT   := cpp
